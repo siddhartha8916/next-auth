@@ -30,13 +30,20 @@ export const {
     },
   },
   callbacks: {
-    // async signIn({ user }) {
-    //   if (!user || !user.id) return false;
-    //   const existingUser = await getUserByID(user.id);
-    //   if (!existingUser || !existingUser.emailVerified) return false;
+    async signIn({ user, account }) {
+      if (account?.provider !== "credentials") return true;
 
-    //   return true;
-    // },
+      if (!user || !user.id) return false;
+
+      const existingUser = await getUserByID(user.id);
+
+      //   Prevent Signin without email verification
+      if (!existingUser || !existingUser?.emailVerified) return false;
+
+      //   TODO : Add 2FA Check
+
+      return true;
+    },
     async session({ token, session }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
