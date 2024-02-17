@@ -26,15 +26,15 @@ const Navbar = (props: NavbarProps) => {
         </Button>
         <Button
           asChild
-          variant={pathname === "/settings" ? "default" : "outline"}
-        >
-          <Link href={"/settings"}>Settings</Link>
-        </Button>
-        <Button
-          asChild
           variant={pathname === "/admin" ? "default" : "outline"}
         >
           <Link href={"/admin"}>Admin</Link>
+        </Button>
+        <Button
+          asChild
+          variant={pathname === "/settings" ? "default" : "outline"}
+        >
+          <Link href={"/settings"}>Settings</Link>
         </Button>
       </div>
       <UserButton/>
